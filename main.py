@@ -18,7 +18,7 @@ client_secret = os.environ.get('SPOTIPY_CLIENT_SECRET')
 print(client_Id)
 
 
-auth_manager = SpotifyOAuth(scope=scope, show_dialog=True,
+auth_manager = SpotifyOAuth(client_id = client_Id, client_secret=client_secret,scope=scope, show_dialog=True,
         cache_path="token.txt")
 sp = spotipy.Spotify(auth_manager=auth_manager)
 
