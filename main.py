@@ -8,22 +8,40 @@ import os
 import sys
 import spotipy
 from spotipy.oauth2 import SpotifyOAuth
+from pprint import pprint
+from time import sleep
 
 # scope = 'user-read-recently-played'
 scope = 'playlist-modify-private'
+# scope = 'user-read-playback-state, user-modify-playback-state'
 
 client_Id = os.environ.get('SPOTIPY_CLIENT_ID')
 client_secret = os.environ.get('SPOTIPY_CLIENT_SECRET')
-
-print(client_Id)
-
 
 auth_manager = SpotifyOAuth(client_id = client_Id, client_secret=client_secret,scope=scope, show_dialog=True,
         cache_path="token.txt")
 sp = spotipy.Spotify(auth_manager=auth_manager)
 
+# #show playing devices
+# res = sp.devices()
+# pprint(res)
+#
+# #change track
+# sp.start_playback(uris=['spotify:track:3GCdLUSnKSMJhs4Tj6CV3s'])
+#
+# #change volume
+# for i in range(10):
+#     sp.volume(100)
+#
+#     sleep(2)
+#     sp.volume(50)
+#
+#     sleep(2)
+#     sp.volume(20)
+
 user_id = sp.current_user()["id"]
-print(user_id)
+# print(user_id)
+#
 
 date = input("Which year do you want to travel to? Type the date in this format YYYY-MM-DD: ")
 billBoardUrl = f'https://www.billboard.com/charts/hot-100/{date}'
@@ -66,12 +84,6 @@ playlist = sp.user_playlist_create(user=user_id, name=f"{date} Billboard 100", p
 # print(playlist)
 
 sp.playlist_add_items(playlist_id=playlist["id"], items=song_uris)
-
-
-
-
-
-
 
 
 
