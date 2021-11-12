@@ -1,5 +1,5 @@
 # 2021-02-11
-#program to scrap billboard hot 100 of top songs of a day you enter then make sportify playlist from the list
+#program to scrap billboard hot 100 of top songs of a day you enter then make spotify playlist from the list
 #by hamza
 
 import requests
